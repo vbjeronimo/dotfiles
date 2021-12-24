@@ -8,12 +8,12 @@ install() {
     timedatectl set-ntp true
 
     # Partition the disk
-    parted -s "$DRIVE" \
+    parted --script "$DRIVE" \
         mklabel gpt \
-        mkpart "EFI system partition" fat32 1MiB 501MiB \
-        mkpart "root partition" ext4 501MiB 30.5GiB \
-        mkpart "swap partition" linux-swap 30.5GiB 46.5GiB \
-        mkpart "home partition" ext4 46.5GiB 100% \
+        mkpart primary fat32 1MiB 501MiB \
+        mkpart primary ext4 501MiB 30.5GiB \
+        mkpart primary linux-swap 30.5GiB 46.5GiB \
+        mkpart primary ext4 46.5GiB 100% \
         set 1 esp on
 }
 
