@@ -1,0 +1,145 @@
+# ███████╗██╗  ██╗██╗  ██╗██╗  ██╗██████╗ 
+# ██╔════╝╚██╗██╔╝██║  ██║██║ ██╔╝██╔══██╗
+# ███████╗ ╚███╔╝ ███████║█████╔╝ ██║  ██║
+# ╚════██║ ██╔██╗ ██╔══██║██╔═██╗ ██║  ██║
+# ███████║██╔╝ ██╗██║  ██║██║  ██╗██████╔╝
+# ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ 
+# Shared Config                                        
+
+##### MEDIA KEYS ###############################################################
+
+# Volume control
+super + {equal,minus}
+    pactl set-sink-volume 0 {+,-}3%
+
+super + slash
+    pactl set-sink-mute 0 toggle
+
+# Play/Pause/Previous/Next song
+super + {p,comma,period}
+    playerctl {play-pause,previous,next} --player spotify
+
+# Manage brightness
+XF86MonBrightness{Down,Up}
+    brightnessctl set {15%-, +15%}
+
+# Take screenshots
+super + backslash
+    maim /home/$USER/pictures/screenshots/(date).png
+
+super + shift + backslash
+    maim --select /home/$USER/pictures/screenshots/(date).png
+
+##### APPLICATIONS #############################################################
+
+# Terminal emulator
+super + Return
+        kitty
+
+super + shift + Return
+        bspc rule -a kitty -o state=floating rectangle=780x460+0+0 center=true \
+        && kitty
+
+# Program launcher
+super + space
+#    ~/.config/rofi/launchers/colorful/launcher.sh
+    dmenu_run
+
+# Resource manager
+ctrl + alt + Delete
+        kitty bpytop
+
+# NeoVim
+super +  ctrl + Return
+        kitty nvim
+
+# File manager
+super + shift + space
+        kitty ranger
+
+# Close/kill window
+super + {_,shift + }BackSpace
+	bspc node -{c,k}
+
+##### NODE/DESKTOP #############################################################
+
+#### LAYOUT/STATE ####
+# Alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# Set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+#### PRESELECTION ####
+# Preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# Preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# Cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# Cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#### CHANGE SIZE ####
+# Expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# Contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+#### MOVE/SHIFT WINDOW ####
+# Move to or send window to workspace # 
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# Move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+#### FOCUS ####
+# Focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# Focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# Focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# Focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+##### MISC #####################################################################
+
+# Make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# Quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+# Shutdown
+super + End
+        shutdown now
+
+# Switch KB Layout (QWERTY / COLEMAK)
+super + {F1,F2}
+        setxkbmap {us,us -variant colemak}
