@@ -9,10 +9,10 @@
 ##### MEDIA KEYS ###############################################################
 
 # Volume control
-super + {equal,minus}
+XF86Audio{Raise,Lower}Volume
     pactl set-sink-volume 0 {+,-}3%
 
-super + slash
+XF86AudioMute
     pactl set-sink-mute 0 toggle
 
 # Play/Pause/Previous/Next song
@@ -34,7 +34,7 @@ super + shift + backslash
 
 # Terminal emulator
 super + Return
-        kitty
+        kitty 
 
 super + shift + Return
         bspc rule -a kitty -o state=floating rectangle=780x460+0+0 center=true \
@@ -42,7 +42,6 @@ super + shift + Return
 
 # Program launcher
 super + space
-#    ~/.config/rofi/launchers/colorful/launcher.sh
     dmenu_run
 
 # Resource manager

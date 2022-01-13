@@ -4,10 +4,22 @@
 DRIVE='/dev/sda'
 
 install() {
-    # Update system clock
+    echo "[*] Starting installation script..."
+    sleep 1
+
+    echo "[*] Updating system clock..."
     timedatectl set-ntp true
 
-    # Partition the disk
+    echo "[*] Partitioning the disks..."
+    partition_disk "$DRIVE"
+
+    echo "[*] Formatting the partitions..."
+    format_filesystem "$DRIVE"
+}
+
+partition_disk() {
+    local dev="$1"
+
     parted --script "$DRIVE" \
         mklabel gpt \
         mkpart primary fat32 1MiB 501MiB \
@@ -17,4 +29,11 @@ install() {
         set 1 esp on
 }
 
-install
+format_filesystem() {
+    local dev="$1"
+
+    mkfs.fat -F 32 "$dev"1
+    mkfs.ext4 "$dev"2
+    mkswap "$dev"3
+    mkfs.ext4 "$dev"4
+}

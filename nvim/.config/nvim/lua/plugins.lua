@@ -26,6 +26,8 @@ return require('packer').startup(function(use)
   use 'kyazdani42/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
 
+  use 'windwp/nvim-autopairs'
+
   use 'tpope/vim-fugitive'
 
   use 'pineapplegiant/spaceduck'
