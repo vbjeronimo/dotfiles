@@ -19,26 +19,18 @@ XF86AudioMute
 super + {p,comma,period}
     playerctl {play-pause,previous,next} --player spotify
 
-# Manage brightness
-XF86MonBrightness{Down,Up}
-    brightnessctl set {15%-, +15%}
-
 # Take screenshots
-super + backslash
+super + apostrophe
     maim /home/$USER/pictures/screenshots/(date).png
 
-super + shift + backslash
+super + shift + apostrophe
     maim --select /home/$USER/pictures/screenshots/(date).png
 
 ##### APPLICATIONS #############################################################
 
 # Terminal emulator
 super + Return
-        kitty 
-
-super + shift + Return
-        bspc rule -a kitty -o state=floating rectangle=780x460+0+0 center=true \
-        && kitty
+    kitty 
 
 # Program launcher
 super + space
@@ -46,18 +38,18 @@ super + space
 
 # Resource manager
 ctrl + alt + Delete
-        kitty bpytop
+    kitty bpytop
 
 # NeoVim
 super +  ctrl + Return
-        kitty nvim
+    kitty nvim
 
 # File manager
 super + shift + space
-        kitty ranger
+    kitty ranger
 
 # Close/kill window
-super + {_,shift + }BackSpace
+super + {_,shift + }grave
 	bspc node -{c,k}
 
 ##### NODE/DESKTOP #############################################################
@@ -116,8 +108,8 @@ super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
 # Focus the last node/desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
+# super + {grave,Tab}
+#	bspc {node,desktop} -f last
 
 # Focus the older or newer node in the focus history
 super + {o,i}
@@ -136,9 +128,5 @@ super + alt + {q,r}
 	bspc {quit,wm -r}
 
 # Shutdown
-super + End
+super + shift + Escape
         shutdown now
-
-# Switch KB Layout (QWERTY / COLEMAK)
-super + {F1,F2}
-        setxkbmap {us,us -variant colemak}

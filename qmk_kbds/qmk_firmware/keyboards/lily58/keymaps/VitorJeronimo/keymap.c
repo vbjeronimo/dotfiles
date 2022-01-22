@@ -28,53 +28,53 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
  [_COLEMAK] = LAYOUT( \
   KC_ESC,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_GRV, \
-  KC_LALT,  KC_Q,   KC_W,    KC_F,    KC_P,    KC_G,                     KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,  KC_MINS, \
+  KC_TAB,   KC_Q,   KC_W,    KC_F,    KC_P,    KC_G,                     KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,  KC_MINS, \
   KC_BSPC,  KC_A,   KC_R,    KC_S,    KC_T,    KC_D,                     KC_H,    KC_N,    KC_E,    KC_I,    KC_O,     KC_QUOT, \
-  KC_LSFT,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, KC_LBRC,  KC_RBRC,  KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT, \
+  KC_LSFT,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, KC_LALT,  KC_RALT,  KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT, \
                         KC_LGUI, KC_LCTL, MO(_LOWER), KC_SPC, KC_ENT, MO(_RAISE), KC_RCTL, KC_RGUI \
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |  9   |  0   |      |
+ * |   ~  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |  9   |  0   |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   ~  |   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |  `   |
+ * |      |   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |  `   |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |      |      |   [  |   ]  |      |-------|    |-------|   -  |   +  |   =  |   {  |   }  |   \  |
+ * |      |      |      |   =  |   +  |      |-------|    |-------|   -  |   [  |   ]  |   {  |   }  |   \  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   |      |      |      | /       /       \  ESC \  |GAMING|      |      |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
 [_LOWER] = LAYOUT( \
-  _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,\
-  _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______, \
-  KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_GRV, \
-  _______, _______, _______, KC_LBRC, KC_RBRC, _______, _______, _______, KC_MINS, KC_PLUS, KC_EQL,  KC_LCBR, KC_RCBR, KC_BSLS, \
-                             _______, _______, _______, _______, KC_ESC,  TO(_GAMING), _______, _______\
+  _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
+  KC_TILD, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_PIPE, \
+  _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_GRV, \
+  _______, _______, _______, KC_EQL,  KC_PLUS, _______, _______, _______, KC_MINS, KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, KC_BSLS, \
+                             _______, _______, _______, _______, KC_ESC,  _______, _______, _______\
 ),
 /* RAISE
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |                    |      |      |      |      |      |GAMING| 
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------| 
  * | CAPS |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |  DEL |      |      |      |      |      |-------.    ,-------|      | Left | Down |  Up  |Right |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |      |      |      |      |      |      |-------|    |-------|      |      |      |      |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   |      |      |GAMING| / TAB   /       \      \  |      |      | RESET|
+ *                   |      |      |      | / TAB   /       \      \  |      |      | RESET|
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
 
 [_RAISE] = LAYOUT( \
-  _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, _______, \
-  KC_CAPS, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, _______, \
-  KC_DEL,  _______, _______, _______, _______, _______,                     _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC__VOLUP, \
-  _______, _______, _______, _______, _______, _______,  _______, _______,  _______, KC_MPLY, KC_MPRV, KC_MNXT, KC__MUTE, KC__VOLDOWN, \
-                             _______, _______, TO(_GAMING), KC_TAB,  _______,  _______, _______, RESET \
+  _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______,  TO(_GAMING), \
+  KC_CAPS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     _______, _______, _______, _______, _______,  _______, \
+  KC_DEL,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,                     _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,  KC__VOLUP, \
+  _______, KC_F11,  KC_F12,  _______, _______, _______,  _______, _______,  _______, KC_MPLY, KC_MPRV, KC_MNXT, KC__MUTE, KC__VOLDOWN, \
+                             _______, _______, _______, KC_TAB,  _______,  _______, _______, RESET \
 ),
 /* GAMING
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -144,19 +144,19 @@ const char *read_keylogs(void);
 // const char *read_host_led_state(void);
 // void set_timelog(void);
 // const char *read_timelog(void);
-
-void oled_task_user(void) {
+bool oled_task_user(void) {
   if (is_keyboard_master()) {
     // If you want to change the display of OLED, you need to change here
     oled_write_ln(read_layer_state(), false);
-    oled_write_ln(read_keylog(), true);
+    oled_write_ln(read_keylog(), false);
     oled_write_ln(read_keylogs(), false);
     //oled_write_ln(read_mode_icon(keymap_config.swap_lalt_lgui), false);
     //oled_write_ln(read_host_led_state(), false);
     //oled_write_ln(read_timelog(), false);
   } else {
-    oled_write(read_logo(), true);
+    oled_write(read_logo(), false);
   }
+    return false;
 }
 #endif // OLED_ENABLE
 
