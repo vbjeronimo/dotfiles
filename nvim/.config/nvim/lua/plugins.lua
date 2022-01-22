@@ -22,15 +22,24 @@ return require('packer').startup(function(use)
   use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
 
+  use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate'
+  }
+
   use 'kyazdani42/nvim-tree.lua'
   use 'kyazdani42/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
+  use 'akinsho/toggleterm.nvim'
 
+  use 'Yggdroot/indentLine'
   use 'windwp/nvim-autopairs'
 
   use 'tpope/vim-fugitive'
 
   use 'pineapplegiant/spaceduck'
+  use 'marko-cerovac/material.nvim'
+  use 'bluz71/vim-nightfly-guicolors'
 
   if packer_bootstrap then
     require('packer').sync()

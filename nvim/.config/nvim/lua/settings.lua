@@ -6,7 +6,7 @@ g.loaded_ruby_provider = 0
 g.loaded_perl_provider = 0
 
 -- global options
--- opt.hidden = true
+opt.hidden = true
 
 opt.splitright = true
 opt.splitbelow = true
@@ -33,6 +33,7 @@ vim.cmd [[
   syntax enable
   colorscheme spaceduck
 ]]
+
 
 -- Highlight on yank
 vim.cmd [[
