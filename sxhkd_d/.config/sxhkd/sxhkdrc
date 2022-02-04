@@ -127,6 +127,10 @@ super + Escape
 super + alt + {q,r}
 	bspc {quit,wm -r}
 
-# Shutdown
+# Hibernate
 super + shift + Escape
-        shutdown now
+    systemctl hibernate
+
+# Sleep
+super + shift + Tab
+    systemctl suspend
