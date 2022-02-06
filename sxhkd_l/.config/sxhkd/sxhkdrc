@@ -135,9 +135,9 @@ super + Escape
 super + alt + {q,r}
 	bspc {quit,wm -r}
 
-# Shutdown
-super + End
-        shutdown now
+# Hibernate/Suspend
+super + {End,Insert}
+    systemctl {hibernate,suspend}
 
 # Switch KB Layout (QWERTY / COLEMAK)
 super + {F1,F2}
