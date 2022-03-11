@@ -1,39 +1,34 @@
-#!/bin/bash
+HOSTNAME=""
+USERNAME=""
+ROOT_PASSWORD=""
+USER_PASSWORD=""
 
-# Drive to install to
-DRIVE='/dev/sda'
+pacman -S --noconfirm archlinux-keyring
 
-install() {
-    echo "[*] Starting installation script..."
-    sleep 1
+# Time zone
+ln -sf /usr/share/zoneinfo/Canada/Atlantic /etc/localtime
+hwclock --systohc
 
-    echo "[*] Updating system clock..."
-    timedatectl set-ntp true
+# Localization
+sed -i 's/^#en_US.UTF-8/en_US.UTF-8/' /etc/locale.gen
+locale-gen
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
-    echo "[*] Partitioning the disks..."
-    partition_disk "$DRIVE"
+# Network configuration
+hostnamectl set-hostname $HOSTNAME
+pacman -S --noconfirm networkmanager
+systemctl enable NetworkManager
 
-    echo "[*] Formatting the partitions..."
-    format_filesystem "$DRIVE"
-}
+# Root management
+echo "root:$ROOT_PASSWORD" | chpasswd
 
-partition_disk() {
-    local dev="$1"
+# Boot loader & microcode installation
+pacman -S --noconfirm grub efibootmgr amd-ucode
+grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
 
-    parted --script "$DRIVE" \
-        mklabel gpt \
-        mkpart primary fat32 1MiB 501MiB \
-        mkpart primary ext4 501MiB 30.5GiB \
-        mkpart primary linux-swap 30.5GiB 46.5GiB \
-        mkpart primary ext4 46.5GiB 100% \
-        set 1 esp on
-}
-
-format_filesystem() {
-    local dev="$1"
-
-    mkfs.fat -F 32 "$dev"1
-    mkfs.ext4 "$dev"2
-    mkswap "$dev"3
-    mkfs.ext4 "$dev"4
-}
+# User management
+pacman -S --noconfirm sudo
+sed -i 's/^# %wheel ALL=(ALL) ALL$/%wheel ALL=(ALL) ALL/' /etc/sudoers
+useradd -m -G wheel $USERNAME
+echo "$USERNAME:$USER_PASSWORD" | chpasswd
