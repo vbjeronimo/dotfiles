@@ -16,8 +16,6 @@ opt.hlsearch = false
 
 opt.termguicolors = true
 
-opt.equalalways = false     -- windows won't automatically resize after opening/closing a window
-
 -- window-local options
 opt.wrap = false
 opt.number = true
