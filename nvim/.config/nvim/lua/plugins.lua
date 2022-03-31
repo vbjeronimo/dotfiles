@@ -40,6 +40,7 @@ return require('packer').startup(function(use)
   use 'pineapplegiant/spaceduck'
   use 'marko-cerovac/material.nvim'
   use 'bluz71/vim-nightfly-guicolors'
+  use 'Everblush/everblush.vim'
 
   if packer_bootstrap then
     require('packer').sync()
