@@ -37,7 +37,7 @@ opt.shiftwidth = 4
 
 vim.cmd [[
   syntax enable
-  colorscheme everblush
+  colorscheme spaceduck
 ]]
 
 -- Highlight on yank
