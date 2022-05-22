@@ -1,0 +1,9 @@
+* {
+  al:  #00000000;
+  bg:  #090b10ff;
+  se:  #0f111aff;
+  fg:  #a7accdff;
+  ac:  #f78c6cff;
+  ug:  #f07178ff;
+}
+
