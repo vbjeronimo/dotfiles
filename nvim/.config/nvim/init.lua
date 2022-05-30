@@ -1,11 +1,15 @@
-require('plugins')
-require('lsp-config')
-require('settings')
-require('keymaps')
+require('impatient')
 
-require('plug-config.treesitter')
-require('plug-config.nvimtree')
-require('plug-config.lualine')
-require('plug-config.cmp')
-require('plug-config.autopairs')
-require('plug-config.toggleterm')
+local modules = {
+  'themes',
+  'core',
+  'lsp',
+  'plugins',
+}
+
+for _, module in ipairs(modules) do
+  local ok, err = pcall(require, module)
+  if not ok then
+    error(('Error loading %s...\n\n%s'):format(module, err))
+  end
+end
