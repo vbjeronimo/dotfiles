@@ -1,0 +1,26 @@
+---
+- name: Full setup
+  hosts: localhost
+  tasks:
+    - name: Update and upgrade
+      become: true
+      community.general.pacman:
+        update_cache: true
+        upgrade: true
+
+    - name: Install packages
+      become: true
+      community.general.pacman:
+        name:
+          - ly
+          - neovim
+          - nerd-fonts
+          - qtile
+          - tmux
+        state: present
+
+    - name: Enable ly (display manager)
+      become: true
+      ansible.builtin.systemd_service:
+        name: ly
+        enabled: true
